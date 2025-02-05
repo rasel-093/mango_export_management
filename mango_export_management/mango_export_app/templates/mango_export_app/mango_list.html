@@ -1,0 +1,48 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container">
+    <!-- Search Form Section -->
+    <div class="row mb-4">
+        <div class="col-md-6 mx-auto">
+            <h3 class="text-center mb-4">Search Mangoes</h3>
+            <form method="GET" action="{% url 'mango_list' %}">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search by Order ID or Mango Title" value="{{ query }}">
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mango List Section -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-center mb-4">Mango List</h3>
+            <ul class="list-group">
+                {% for mango in mangos %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Order ID:</strong> {{ mango.order_id }} <br>
+                            <strong>Variety:</strong> {{ mango.variety }} <br>
+                            <strong>Price:</strong> {{ mango.price }}
+                        </div>
+                        <div>
+                            <a href="{% url 'mango_update' mango.order_id %}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="{% url 'mango_delete' mango.order_id %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item text-center">No mangoes found for this search.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Add New Mango Section -->
+    <div class="mt-4 text-center">
+        <a href="{% url 'mango_create' %}" class="btn btn-success"><i class="fas fa-plus"></i> Add New Mango</a>
+    </div>
+</div>
+{% endblock %}
+
