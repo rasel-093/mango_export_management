@@ -46,4 +46,12 @@ python manage.py runserver
 ```bash
 http://127.0.0.1:8000/
 ```
+## ✨ Screenshots
+
+### 🧾 Mango List Page
+![Mango List](screenshots/mango_list.png)
+
+### ➕ Add Mango Form
+![Add Mango](screenshots/add_mango.png)
+
 
